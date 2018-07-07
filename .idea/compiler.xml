@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="AOSSelenium" />
+        <module name="AOS-Selenium" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AOSSelenium" target="1.5" />
+      <module name="AOS-Selenium" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

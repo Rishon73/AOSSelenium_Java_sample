@@ -22,8 +22,9 @@ import org.apache.http.HttpHost;
 public class AOSWebTest {
     private static RemoteWebDriver driver;
     private static DesiredCapabilities capabilities;
-    private final String AOSuserName = "";           // YOUR AOS USER NAME
-    private final String AOSpassword = "";           // YOUR AOS PASSWORD (CLEAR TEXT)
+    private final String AOSuserName = "Shahar";           // YOUR AOS USER NAME
+    private final String AOSpassword = "Password1";           // YOUR AOS PASSWORD (CLEAR TEXT)
+    private static final String SUTAddress = "http://advantageonlineshopping.com/#";
 
     @BeforeClass
     public static void openBrowser() throws MalformedURLException {
@@ -33,6 +34,7 @@ public class AOSWebTest {
         String clientSecret = "";        // YOUR SRF CLIENT SECRET
         String SeleniumURL = "http://ftaas.saas.hpe.com/wd/hub";
         String testName = "Selenium/Java-AOS-remote-exec";
+        String tunnelName;
 
         String remoteDriverAddr = System.getenv("SELENIUM_ADDRESS");
         if (remoteDriverAddr != null) {
@@ -40,6 +42,7 @@ public class AOSWebTest {
             clientID = System.getenv("SRF_CLIENT_ID");
             clientSecret = System.getenv("SRF_CLIENT_SECRET");
             testName = "Selenium/Java-AOS";
+            tunnelName = "";
         }
         capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability("build", "12.3.5");
@@ -80,8 +83,8 @@ public class AOSWebTest {
     @Test
     public void OnlineShoppingE2E() throws InterruptedException {
         Actions builder = new Actions(driver);
-        System.out.println("Navigeting to http://advantageonlineshopping.com");
-        driver.get("http://advantageonlineshopping.com/#");
+        System.out.println("Navigeting to " + SUTAddress);
+        driver.get(SUTAddress);
 
         System.out.println("Click the search field");
         driver.findElementByXPath("//*[@id=\"menuSearch\"]").click();

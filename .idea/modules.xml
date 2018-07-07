@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AOSSelenium.iml" filepath="$PROJECT_DIR$/AOSSelenium.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AOS-Selenium.iml" filepath="$PROJECT_DIR$/AOS-Selenium.iml" />
     </modules>
   </component>
 </project>
