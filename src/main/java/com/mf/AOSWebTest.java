@@ -24,34 +24,48 @@ public class AOSWebTest {
     private static DesiredCapabilities capabilities;
     private final String AOSuserName = "Shahar";           // YOUR AOS USER NAME
     private final String AOSpassword = "Password1";           // YOUR AOS PASSWORD (CLEAR TEXT)
-    private static final String SUTAddress = "http://advantageonlineshopping.com/#";
+    private static final String SUTAddress = "nimbusserver.aos.com:8000";  //"http://www.advantageonlineshopping.com//";//
 
     @BeforeClass
     public static void openBrowser() throws MalformedURLException {
-
+        System.out.println("Entering openBrowser(), init global params");
         boolean hasProxy = false;
-        String clientID = "";            // YOUR SRF CLIENT ID
-        String clientSecret = "";        // YOUR SRF CLIENT SECRET
-        String SeleniumURL = "http://ftaas.saas.hpe.com/wd/hub";
+        boolean usingTunnel = true;
+        String clientID = "t511780658_oauth2-r59KGnAQQhMfzYTlnpar@hpe.com";            // YOUR SRF CLIENT ID
+        String clientSecret = "pskKNTcojAyDEpMpw1gS";        // YOUR SRF CLIENT SECRET
+        String SeleniumURL = "https://ftaas.saas.hpe.com/wd/hub/";
         String testName = "Selenium/Java-AOS-remote-exec";
-        String tunnelName;
+        String tunnelName = "Shiffs Linux Tunnel";
 
+        String [] tags = new String[2];
+        tags[0] = "ContinuousTesting";
+        tags[1] = "AOS-web";
+
+        // Cloud Execution
         String remoteDriverAddr = System.getenv("SELENIUM_ADDRESS");
         if (remoteDriverAddr != null) {
+            System.out.println("This is a cloud execution");
             SeleniumURL = remoteDriverAddr;
             clientID = System.getenv("SRF_CLIENT_ID");
             clientSecret = System.getenv("SRF_CLIENT_SECRET");
-            testName = "Selenium/Java-AOS";
-            tunnelName = "";
+            testName = "Selenium/Java-AOS-cloud-exec";
         }
+
         capabilities = DesiredCapabilities.chrome();
-        capabilities.setCapability("build", "12.3.5");
-        capabilities.setCapability("release", "969");
+        capabilities.setCapability("build", "174");
+        capabilities.setCapability("release", "2018.08");
+        capabilities.setCapability("tags", tags);
 
         capabilities.setCapability("version", "64");
         capabilities.setCapability("platform", "Windows 10");
         capabilities.setCapability("resolution", "1366x768");
 
+        System.out.println("Are we using tunnel? - " + (usingTunnel ? "yes" : "No"));
+        if (usingTunnel)
+            capabilities.setCapability("tunnelName", tunnelName);
+
+        System.out.println("set capabilities:\n" + "testName: " + testName + "\nSRF_CLIENT_ID: " + clientID
+                + "\nSRF_CLIENT_SECRET: " + clientSecret);
         capabilities.setCapability("testName", testName);
         capabilities.setCapability("SRF_CLIENT_ID", clientID);
         capabilities.setCapability("SRF_CLIENT_SECRET", clientSecret);
@@ -75,9 +89,10 @@ public class AOSWebTest {
 
             driver = new RemoteWebDriver(executor, capabilities);
         } else {
+            System.out.println("Selenium web driver: " + SeleniumURL);
             driver = new RemoteWebDriver(new URL(SeleniumURL), capabilities);
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @Test
