@@ -1,0 +1,8 @@
+{
+  "tunnel_name":"Shiffs Linux Tunnel",
+  "CLIENT_ID":"t511780658_oauth2-r59KGnAQQhMfzYTlnpar@hpe.com",
+  "CLIENT_SECRET":"pskKNTcojAyDEpMpw1gS",
+  "AOSUserName":"Shahar",
+  "AOSUserPassword":"Password1",
+  "SeleniumURL":"https://ftaas.saas.hpe.com/wd/hub/"
+}
