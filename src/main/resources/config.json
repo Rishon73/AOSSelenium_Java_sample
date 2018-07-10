@@ -4,5 +4,12 @@
   "CLIENT_SECRET":"pskKNTcojAyDEpMpw1gS",
   "AOSUserName":"Shahar",
   "AOSUserPassword":"Password1",
-  "SeleniumURL":"https://ftaas.saas.hpe.com/wd/hub/"
+  "SeleniumURL":"https://ftaas.saas.hpe.com/wd/hub/",
+  "testName":"Selenium/Java-AOS-remote-exec",
+  "buildNumber":"174",
+  "release":"2018.08",
+  "browser":"Chrome",
+  "version":"latest",
+  "platform":"Windows 10",
+  "resolution":"1280x1024"
 }
