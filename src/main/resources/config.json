@@ -1,15 +1,18 @@
 {
   "tunnel_name":"Shiffs Linux Tunnel",
+  "usingTunnel":"false",
   "CLIENT_ID":"t511780658_oauth2-r59KGnAQQhMfzYTlnpar@hpe.com",
-  "CLIENT_SECRET":"pskKNTcojAyDEpMpw1gS",
+  "CLIENT_SECRET":"",
   "AOSUserName":"Shahar",
   "AOSUserPassword":"Password1",
   "SeleniumURL":"https://ftaas.saas.hpe.com/wd/hub/",
-  "testName":"Selenium/Java-AOS-remote-exec",
+  "testName":"AOS Continuous Testing remote-exec",
   "buildNumber":"174",
   "release":"2018.08",
   "browser":"Chrome",
   "version":"latest",
   "platform":"Windows 10",
-  "resolution":"1280x1024"
+  "resolution":"1280x1024",
+  "tags":["ContinuousTesting", "AOS-web"],
+  "_comments":["ContinuousTesting", "AOS-web"]
 }
