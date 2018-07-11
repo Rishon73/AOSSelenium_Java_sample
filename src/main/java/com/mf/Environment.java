@@ -130,8 +130,8 @@ public class Environment {
 
             setSeleniumURL(new URL(jsonObject.get("SeleniumURL").toString()));
             setTunnelName(jsonObject.get("tunnel_name").toString());
-            setSrfClientId(jsonObject.get("CLIENT_ID").toString());
-            setSrfClientSecret(jsonObject.get("CLIENT_SECRET").toString());
+            setSrfClientId(jsonObject.get("SRF_CLIENT_ID").toString());
+            setSrfClientSecret(jsonObject.get("SRF_CLIENT_SECRET").toString());
             setRelease(jsonObject.get("release").toString());
             setBrowser(jsonObject.get("browser").toString());
             setVersion(jsonObject.get("version").toString());
