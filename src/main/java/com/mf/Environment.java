@@ -52,9 +52,7 @@ public class Environment {
         this.version = version;
     }
 
-    public String getPlatform() {
-        return this.platform;
-    }
+    public String getPlatform() { return this.platform; }
 
     public void setPlatform(String platform) { this.platform = platform; }
 
