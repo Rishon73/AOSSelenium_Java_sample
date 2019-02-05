@@ -31,8 +31,6 @@ public class AOSWebTest {
     private static String browser;
     private static DesiredCapabilities capabilities;
 
-    private boolean errorInScript = false;
-
     @BeforeClass
     public static void openBrowser() {
         boolean isCloudExecution = (System.getenv("SELENIUM_ADDRESS") != null);
@@ -92,7 +90,15 @@ public class AOSWebTest {
     }
 
     @Test
-    public void OnlineShoppingE2E() throws InterruptedException {
+    public void OnlineShoppingE2E() throws java.io.IOException{
+
+/*
+        Properties props = new Properties();
+        props.load(this.getClass().getResourceAsStream("project.properties"));
+        String baseDir = props.get("project.basedir").toString();
+        System.out.println("baseDir: " + baseDir + "\nSystem.getProperty(\"basedir\")" + System.getProperty("basedir"));
+*/
+
         try {
             Actions builder = new Actions(driver);
             System.out.println("Navigeting to " + SUTAddress);
@@ -121,6 +127,32 @@ public class AOSWebTest {
             System.out.println("Click Sign in");
             driver.findElementByXPath("//*[@id=\"sign_in_btnundefined\"]").click();
 
+            windowSync(5000);
+
+            // Click Add to cart
+            System.out.println("Click Add to cart");
+            driver.findElementByXPath("//*[@id=\"productProperties\"]/div[3]/button").click();
+
+            // Click the cart icon
+            System.out.println("Click the cart icon");
+            driver.findElementByXPath("//*[@id=\"shoppingCartLink\"]").click();
+
+            String totValue = driver.findElementByXPath("//*[@id=\"shoppingCart\"]/table/tfoot/tr[1]/td[2]/span[2]").getText();
+            System.out.println("Total cart value = " + totValue);
+
+            // Click Checkout
+            System.out.println("Click Checkout");
+            driver.findElementByXPath("//*[@id=\"checkOutButton\"]").click();
+
+            // Click Next...
+            System.out.println("Click Next...");
+            driver.findElementByXPath("//*[@id=\"next_btn\"]").click();
+
+            // Click Pay Now
+            System.out.println("Click Pay Now");
+            driver.findElementByXPath("//*[@id=\"pay_now_btn_MasterCredit\"]").click();
+
+            windowSync(3000);
             System.out.println("Done!");
 
         } catch (Exception e) {
@@ -139,9 +171,8 @@ public class AOSWebTest {
         Thread.sleep(milliseconds);
     }
 
-    private static void SRFRemoteExecution(Environment environment) {
+    private static void SRFRemoteExecution(Environment environment) throws java.io.IOException     {
         System.out.println("This is remote execution");
-
         environment.initParamsFromJSONConfigFile(System.getProperty("basedir") + "/src/main/resources/config.json");
 
         clientID = environment.getSrfClientId();            // YOUR SRF CLIENT ID
@@ -157,6 +188,7 @@ public class AOSWebTest {
         capabilities.setCapability("platform", environment.getPlatform());
         capabilities.setCapability("resolution", environment.getResolution());
         capabilities.setCapability("testName", environment.getTestName());
+        capabilities.setCapability("browserName", environment.getBrowser());
 
         if (isUsingTunnel)
             capabilities.setCapability("tunnelName", environment.getTunnelName());
