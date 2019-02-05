@@ -18,16 +18,21 @@
             <artifactId>selenium-java</artifactId>
             <version>3.4.0</version>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>3.3.0</version>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <!--dependency> Tested Applitools - not working with Java code
+            <groupId>com.applitools</groupId>
+            <artifactId>eyes-selenium-java3</artifactId>
+            <version>RELEASE</version>
+        </dependency-->
     </dependencies>
     <build>
         <testSourceDirectory>src/main/java</testSourceDirectory>
