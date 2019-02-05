@@ -54,13 +54,6 @@
     <orderEntry type="library" name="Maven: xalan:xalan:2.7.2" level="project" />
     <orderEntry type="library" name="Maven: xerces:xercesImpl:2.11.0" level="project" />
     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.4.01" level="project" />
-    <orderEntry type="library" name="Maven: io.appium:java-client:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: cglib:cglib:3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.ow2.asm:asm:4.2" level="project" />
-    <orderEntry type="library" name="Maven: commons-validator:commons-validator:1.4.1" level="project" />
-    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
-    <orderEntry type="library" name="Maven: commons-digester:commons-digester:1.8.1" level="project" />
-    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
   </component>
 </module>
