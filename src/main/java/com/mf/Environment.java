@@ -39,75 +39,47 @@ public class Environment {
     }
 
     public String getBrowser() { return browser; }
-
     public void setBrowser(String browser) {
         this.browser = browser;
     }
-
-    public String getVersion (){
-        return this.version;
-    }
-
-    public void setVersion(String version){
-        this.version = version;
-    }
-
+    public String getVersion (){ return this.version; }
+    public void setVersion(String version){ this.version = version; }
     public String getPlatform() { return this.platform; }
-
     public void setPlatform(String platform) { this.platform = platform; }
-
     public String getTestName(){
         return this.testName;
     }
-
     public void setTestName(String testName) {
         this.testName = testName;
     }
-
     public String getSrfClientId() {
         return srfClientID;
     }
-
     public void setSrfClientId(String srfClientID) {
         this.srfClientID = srfClientID;
     }
-
     public String getSrfClientSecret() {
         return srfClientSecret;
     }
-
     public void setSrfClientSecret(String srfClientSecret) {
         this.srfClientSecret = srfClientSecret;
     }
-
     public String getResolution() {
         return resolution;
     }
-
     public void setResolution(String resolution) {
         this.resolution = resolution;
     }
-
     public URL getSeleniumURL() { return SeleniumURL; }
-
     public void setSeleniumURL(URL SeleniumURL) { this.SeleniumURL = SeleniumURL; }
-
     public void setTunnelName(String tunnelName) { this.tunnelName = tunnelName; }
-
     public String getTunnelName() { return tunnelName; }
-
     public void setBuildNumber(String buildNumber) { this.buildNumber = buildNumber; }
-
     public String getBuildNumber() { return buildNumber; }
-
     public void setRelease(String release) { this.release = release; }
-
     public String getRelease() { return release; }
-
     public void setIsUsingTunnel(boolean isUsingTunnel) { this.isUsingTunnel = isUsingTunnel;}
-
     public boolean getIsUsingTunnel() { return isUsingTunnel; }
-
     public void setTags(JSONArray tagsArray) {
         String[] tags = new String[tagsArray.size()];
         for (int i = 0; i < tagsArray.size(); i++) {
