@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Environment {
+    private String AOSUserName = "";
+    private String AOSUserPassword = "";
     private String browser = "firefox";
     private String version = "latest";
     private String platform = "Windows 10";
@@ -29,15 +31,19 @@ public class Environment {
     public Environment() { }
 
     public String AllEnvironmentToString(){
-        return String.format("Test name: %s\nSRF_CLIENT_ID: %s\n" +
-                        "SRF_CLIENT_SECRET: %s\n" + "SeleniumURL: %s\nBuild number: %s\nRelease: %s\n" +
+        return String.format("Test name: %s\nSRF_CLIENT_ID: %s\nSRF_CLIENT_SECRET: %s\n" +
+                        "AOS user: %s\nSeleniumURL: %s\nBuild number: %s\nRelease: %s\n" +
                         "Browser: %s\nVersion: %s\nPlatform: %s\nResolutions: %s\nTunnel name: %s\n" +
                         "Using tunnel? %s\nTags: %s\n",
-                getTestName(), getSrfClientId(), getSrfClientSecret(), getSeleniumURL(), getBuildNumber(),
-                getRelease(), getBrowser(), getVersion(), getPlatform(), getResolution(), getTunnelName(),
-                String.valueOf(getIsUsingTunnel()), java.util.Arrays.toString(getTags()));
+                getTestName(), getSrfClientId(), getSrfClientSecret(), getAOSUserName(), getSeleniumURL(),
+                getBuildNumber(), getRelease(), getBrowser(), getVersion(), getPlatform(), getResolution(),
+                getTunnelName(), String.valueOf(getIsUsingTunnel()), java.util.Arrays.toString(getTags()));
     }
 
+    public String getAOSUserName() { return AOSUserName; }
+    public void setAOSUserName(String AOSUserName) { this.AOSUserName = AOSUserName; }
+    public String getAOSUserPassword() { return AOSUserPassword; }
+    public void setAOSUserPAssword(String AOSUserPassword) { this.AOSUserPassword = AOSUserPassword; }
     public String getBrowser() { return browser; }
     public void setBrowser(String browser) {
         this.browser = browser;
@@ -49,9 +55,7 @@ public class Environment {
     public String getTestName(){
         return this.testName;
     }
-    public void setTestName(String testName) {
-        this.testName = testName;
-    }
+    public void setTestName(String testName) { this.testName = testName; }
     public String getSrfClientId() {
         return srfClientID;
     }
@@ -64,9 +68,7 @@ public class Environment {
     public void setSrfClientSecret(String srfClientSecret) {
         this.srfClientSecret = srfClientSecret;
     }
-    public String getResolution() {
-        return resolution;
-    }
+    public String getResolution() { return resolution; }
     public void setResolution(String resolution) {
         this.resolution = resolution;
     }
@@ -111,6 +113,8 @@ public class Environment {
             setIsUsingTunnel(jsonObject.get("usingTunnel").toString().equals("true"));
             setTags((JSONArray)jsonObject.get("tags"));
             setTestName(jsonObject.get("testName").toString());
+            setAOSUserName(jsonObject.get("AOSUserName").toString());
+            setAOSUserPAssword(jsonObject.get("AOSUserPassword").toString());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
