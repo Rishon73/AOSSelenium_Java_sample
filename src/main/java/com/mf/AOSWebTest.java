@@ -22,25 +22,27 @@ public class AOSWebTest {
     private static RemoteWebDriver driver;
     private static String SUTAddress = "http://www.advantageonlineshopping.com/";
     private static final boolean hasProxy = false;
-    private static boolean isUsingTunnel = false;
-    private static final String AOSuserName = "Shahar";           // YOUR AOS USER NAME
-    private static final String AOSpassword = "Password1";        // YOUR AOS PASSWORD (CLEAR TEXT)
-    private static String clientID;            // YOUR SRF CLIENT ID
-    private static String clientSecret;    // YOUR SRF CLIENT SECRET
-    private static URL SeleniumURL;
     private static String browser;
+
+    /*  Note: these parameters will be over-written by values defined in config.json */
     private static DesiredCapabilities capabilities;
+    private static boolean isUsingTunnel;
+    private static String AOSuserName = "User001";    // YOUR AOS USER NAME
+    private static String AOSpassword = "HelloKitty"; // YOUR AOS PASSWORD (CLEAR TEXT)
+    private static String clientID;                   // YOUR SRF CLIENT ID
+    private static String clientSecret;               // YOUR SRF CLIENT SECRET
+    private static URL SeleniumURL;
 
     @BeforeClass
     public static void openBrowser() {
-        boolean isCloudExecution = (System.getenv("SELENIUM_ADDRESS") != null);
+        boolean isRemoteExecution = (System.getenv("SELENIUM_ADDRESS") != null);
         try {
             System.out.println("Entering openBrowser(), init global params");
 
             Environment environment = new Environment();
 
             // Remote execution from IDE
-            if (!isCloudExecution) {
+            if (!isRemoteExecution) {
                 SRFRemoteExecution(environment);
 
             } else { // Cloud Execution
@@ -63,7 +65,7 @@ public class AOSWebTest {
             ===== This code was not tested =====
             */
             if (hasProxy && System.getenv("SELENIUM_ADDRESS") == null) {
-                //URL srfGatewayUrl = new URL("https", "ftaas.saas.hpe.com", 443, "/wd/hub/");
+                //URL srfGatewayUrl = new URL("https", "ftaas.saas.microfocus.com", 443, "/wd/hub/");
 
                 System.out.println("Creating remote web driver with address: " + SeleniumURL);
 
@@ -90,7 +92,7 @@ public class AOSWebTest {
     }
 
     @Test
-    public void OnlineShoppingE2E() throws java.io.IOException{
+    public void OnlineShoppingE2E() {
 
 /*
         Properties props = new Properties();
@@ -171,7 +173,7 @@ public class AOSWebTest {
         Thread.sleep(milliseconds);
     }
 
-    private static void SRFRemoteExecution(Environment environment) throws java.io.IOException     {
+    private static void SRFRemoteExecution(Environment environment) {
         System.out.println("This is remote execution");
         environment.initParamsFromJSONConfigFile(System.getProperty("basedir") + "/src/main/resources/config.json");
 
@@ -180,6 +182,8 @@ public class AOSWebTest {
         SeleniumURL = environment.getSeleniumURL();
         capabilities = environment.initBrowserCapabilities(environment.getBrowser());
         isUsingTunnel = environment.getIsUsingTunnel();
+        AOSuserName = environment.getAOSUserName().equals("")? AOSuserName : environment.getAOSUserName();
+        AOSpassword = environment.getAOSUserPassword().equals("")? AOSpassword : environment.getAOSUserPassword();
 
         capabilities.setCapability("tags", environment.getTags());
         capabilities.setCapability("build", environment.getBuildNumber());
@@ -201,6 +205,8 @@ public class AOSWebTest {
         clientID = System.getenv("SRF_CLIENT_ID");
         clientSecret = System.getenv("SRF_CLIENT_SECRET");
         isUsingTunnel = (System.getenv("usingTunnel") != null);
+        AOSuserName = System.getenv("AOSuserName");
+        AOSpassword = System.getenv("AOSpassword");
     }
 }
 
